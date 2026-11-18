@@ -1,16 +1,59 @@
-# React + Vite
+# Student Registration — React, Node.js and MongoDB
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-stack student registration application demonstrating client-side validation, a Node.js/Express REST API, and persistent NoSQL storage using MongoDB.
 
-Currently, two official plugins are available:
+## Project structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `src/` — React + Vite frontend
+- `backend/` — Express API, Mongoose model and MongoDB CRUD routes
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Student registration form with client-side validation
+- Create, read, update and delete student records
+- MongoDB persistence through Mongoose
+- Password hashing with bcrypt
+- Duplicate email validation
+- Student list retrieved from the API
 
-## Expanding the Oxlint configuration
+## Run locally
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### 1. Start MongoDB
+
+Start your local MongoDB service, or use a MongoDB Atlas connection string.
+
+### 2. Start the backend
+
+```bash
+cd backend
+npm install
+```
+
+Copy `backend/.env.example` to `backend/.env` and configure `MONGODB_URI`. Then run:
+
+```bash
+npm run dev
+```
+
+### 3. Start the React frontend
+
+Open a second terminal in the repository root:
+
+```bash
+npm install
+npm run dev
+```
+
+For local development, the frontend uses `http://localhost:5000` as its default API URL.
+
+## Deployment
+
+- Frontend: Vercel
+- Backend: Railway (service root directory: `/backend`)
+- Database: MongoDB Atlas
+
+See [backend/README.md](backend/README.md) for backend setup and deployment instructions. Configure `VITE_API_URL` in Vercel to the deployed Railway API URL and set `FRONTEND_URL` in Railway to the Vercel website URL.
+
+## Security note
+
+The API stores only a bcrypt password hash, never the plain-text password. Do not commit real database connection strings or `.env` files.
